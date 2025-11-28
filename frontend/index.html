@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Blue-Green + Backend Demo</title>
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    <h1>Hi, welcome to blue-green deployment</h1>
+
+    <h2>Test login to backend</h2>
+    <label>
+      Username:
+      <input id="username" value="admin" />
+    </label>
+    <br />
+    <label>
+      Password:
+      <input id="password" type="password" value="admin" />
+    </label>
+    <br />
+    <button onclick="login()">Login</button>
+
+    <pre id="result"></pre>
+
+    <script>
+      async function login() {
+        const u = document.getElementById("username").value;
+        const p = document.getElementById("password").value;
+
+        try {
+          const res = await fetch("http://45.129.86.68/api/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ username: u, password: p }),
+          });
+          const data = await res.json();
+          document.getElementById("result").textContent = JSON.stringify(
+            data,
+            null,
+            2
+          );
+        } catch (e) {
+          document.getElementById("result").textContent = e.toString();
+        }
+      }
+    </script>
+  </body>
+</html>
