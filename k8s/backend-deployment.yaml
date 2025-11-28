@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
         - name: backend
-          image: lokesh86186/simple-backend:v1
+          image: lokesh86186/simple-backend:v10
           ports:
             - containerPort: 8000
